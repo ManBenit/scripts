@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Conectar con un equipo que tiene intalado y en ejecución ngrok.
+# Requiere que el equipo destino tenga instalados ngrok y openssh-server.
 
 PORT=<puerto>
 HOST=<direccion_IP>

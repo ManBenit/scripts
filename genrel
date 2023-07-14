@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Generador de diagramas entidad-relacion, basado en un script .sql.
+# Requiere sqlfairy.
+
 if [ $# -ne 5 ]
 then
 	echo "Argumentos incorrectos."
