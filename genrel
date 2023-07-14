@@ -1,0 +1,29 @@
+#!/bin/bash
+
+if [ $# -ne 5 ]
+then
+	echo "Argumentos incorrectos."
+	# -c: color, -nc: no color, -a: all, -keys: mostrar solo las fk y pk
+	echo 'Uso: genrel nombre_sin_ext "titulo" num_columnas -c|-nc -a|-keys'
+fi
+
+COMMAND="sqlt-diagram $1.sql -d=MySQL -o=$1.png -c $3"
+
+
+if [ "$4" == "-c" ]
+then
+    COMMAND+=" --color"
+fi
+
+if [ "$5" == "-keys" ]
+then
+    COMMAND+=" --show-fk-only"
+fi
+
+
+$COMMAND -t "$2"
+
+
+# Ejemplo: genrel lagartodb "Base de datos para pagina del proyecto Lagarto" 5 -c -a
+
+

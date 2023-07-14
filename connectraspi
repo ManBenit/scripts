@@ -1,0 +1,58 @@
+#!/bin/bash
+
+
+PORT=<puerto>
+HOST=<direccion_IP>
+USR=<usuario_del_equipo>
+HTTP=<url_publica_ngrok_http>
+#SPRINGBOOT=<url_publica_ngrok_springboot>
+#OTRO=<url_publica_ngrok_otro>
+
+if [ $# -eq 0 ] || [ $1 == "-n" ]
+then
+	clear
+	echo "Conectando al servidor en Raspi..."
+	ssh -p $PORT $USR@$HOST
+
+
+
+elif [ $1 = "-s" ]
+then
+	echo "Puerto: $PORT"
+	echo "Host: $HOST"
+	echo "HTTP: $HTTP"
+	#echo "SpringBoot: $SPRINGBOOT"
+	#echo "Otro: $OTRO"
+
+elif [ $1 = "-e" ]
+then
+	echo "Enviando archivos..."
+	ARGS=""
+	for ar in $@
+	do
+		if [ $ar != "-e" ]
+		then
+			ARGS+="$ar "
+		fi
+	done
+	scp -P $PORT $ARGS $USR@$HOST:~/
+
+
+
+elif [ $1 = "-h" ]
+then
+	echo "-n o nada: Conectar."
+	echo "-s: Imprimir informacion."
+	echo "-e: Enviar archivos."
+	echo "-h: Ayuda"
+
+else
+	echo "Opcion no reconocida"
+fi
+
+
+
+
+
+
+
